@@ -1,0 +1,35 @@
+Key decreased!
+New key is not larger than the previous key
+Max: 49 has been extracted.
+Max: 42 has been extracted.
+Key increased!
+No of elements: 18
+70
+18	50	
+12	17	2	42	
+2	2	-42	12	-85	-85	-65	-65	
+2	2	2	
+Max: 70 has been extracted.
+Max: 50 has been extracted.
+No of elements: 23increased
+50
+42	17	
+12	23	2	-42	
+2	2	18	22	-85	-85	-65	-65	
+2	2	2	-65	17	18	12	21	
+New key is not larger than the previous key
+Key increased!
+Key increased!
+Key increased!
+No of elements: 23
+50
+42	17	
+12	23	2	1	
+2	2	18	22	0	0	-42	-65	
+2	2	2	-65	17	18	12	21	
+No of elements: 23
+-65
+-65	-42	
+0	0	1	2	
+2	2	2	2	2	12	12	17	
+17	18	18	21	22	23	42	50	

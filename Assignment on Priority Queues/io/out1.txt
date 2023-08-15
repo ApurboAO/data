@@ -1,0 +1,34 @@
+Max: 50
+No of elements: 7
+190
+6	50	
+5	3	10	35	
+
+New key is not larger than the previous key
+Key increased!
+New key is not larger than the previous key
+Key decreased!
+No of elements: 11
+190
+17	50	
+12	15	10	35	
+-15	5	3	14	
+Max: 190 has been extracted.
+No of elements: 10
+50
+17	35	
+12	15	10	14	
+-15	5	3	
+Max: 50
+No of elements: 14
+50
+17	35	
+12	15	29	29	
+-15	5	3	3	10	29	14	
+Max: 50 has been extracted.
+Max: 35 has been extracted.
+No of elements: 13
+-15
+3	3	
+5	10	12	14	
+15	17	26	29	29	29	

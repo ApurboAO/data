@@ -10,12 +10,14 @@ public:
     int val;
     node *left;
     node *right;
+    int cnt_node;
 
     node(int key)
     {
         val = key;
         left = nullptr;
         right = nullptr;
+        cnt_node = 1;
     }
 };
 
@@ -39,8 +41,11 @@ private:
         {
             root->right = rinsert(root->right, _val);
         }
-
-        return root;
+        else
+        {
+            root->cnt_node++;
+            return root;
+        }
     }
 
     int findminimum(node *root)
@@ -69,36 +74,43 @@ private:
         }
         else
         {
-            if (root->left == nullptr)
+            if (root->cnt_node == 1)
             {
-                node *temp = root->right;
-                delete root;
-                return temp;
-            }
-            else if (root->right == nullptr)
-            {
-                node *temp = root->left;
-                delete root;
-                return temp;
-            }
+                if (root->left == nullptr)
+                {
+                    node *temp = root->right;
+                    delete root;
+                    return temp;
+                }
+                else if (root->right == nullptr)
+                {
+                    node *temp = root->left;
+                    delete root;
+                    return temp;
+                }
 
-            int min_val = findminimum(root->right);
-            root->val = min_val;
-            root->right = rdelete(root->right, min_val);
+                int min_val = findminimum(root->right);
+                root->val = min_val;
+                root->right = rdelete(root->right, min_val);
+            }
+            else
+            {
+                root->cnt_node--;
+            }
         }
 
         return root;
     }
 
-    bool rfind(node *root, int _val)
+    node *rfind(node *root, int _val)
     {
         if (root == nullptr)
         {
-            return false;
+            return nullptr;
         }
         else if (root->val == _val)
         {
-            return true;
+            return root;
         }
         else if (_val < root->val)
         {
@@ -115,7 +127,7 @@ private:
         if (root != nullptr)
         {
             inOrderTraversal(root->left, outputFile);
-            outputFile << root->val<<" ";
+            outputFile << root->val << " ";
             inOrderTraversal(root->right, outputFile);
         }
     }
@@ -125,7 +137,7 @@ private:
         {
             postOrderTraversal(root->left, outputFile);
             postOrderTraversal(root->right, outputFile);
-            outputFile << root->val<<" " ;
+            outputFile << root->val << " ";
         }
     }
 
@@ -133,7 +145,7 @@ private:
     {
         if (root != nullptr)
         {
-            outputFile << root->val<<" " ;
+            outputFile << root->val << " ";
             preOrderTraversal(root->left, outputFile);
             preOrderTraversal(root->right, outputFile);
         }
@@ -142,15 +154,21 @@ private:
     {
         if (root == nullptr)
             return "";
-        string result = to_string(root->val);
+        string result;
+        if (root->cnt_node > 1)
+        {
+            result = to_string(root->val) + "[" + to_string(root->cnt_node) + "]";
+        }
+        else
+        {
+            result = to_string(root->val);
+        }
         if (root->left == nullptr && root->right == nullptr)
             return result;
         result += "(" + pre_show(root->left, outputFile) + ",";
         result += pre_show(root->right, outputFile) + ")";
         return result;
     }
-
-    
 
 public:
     binarySearchTree()
@@ -169,9 +187,11 @@ public:
     }
     void find_node(int _val, ofstream &outputFile)
     {
-        if (rfind(root, _val))
+        node *found = rfind(root, _val);
+        if (found != nullptr)
         {
-            outputFile << "found" << endl;
+
+            outputFile << "found  " << found->cnt_node << endl;
         }
         else
         {
